@@ -16,9 +16,11 @@ export class Database {
   delete(table, id) {
     const taskIndex = this.#database[table]?.findIndex(task => task.id === id)
 
-    if(taskIndex > -1) {
-      this.#database[table].splice(taskIndex, 1)
+    if(taskIndex === -1) {
+      throw new Error('Task not found')
     }
+
+    this.#database[table].splice(taskIndex, 1)
   }
 
   update(table, id, data) {

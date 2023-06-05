@@ -41,9 +41,13 @@ export const routes = [
     handler: (req, res) => {
       const { id } = req.params;
 
-      database.delete('tasks', id);
+      try {
+        database.delete('tasks', id);
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch {
+        return res.writeHead(404).end();
+      }
     },
   },
   {
