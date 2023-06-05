@@ -12,4 +12,23 @@ export class Database {
 
     return data;
   }
+
+  delete(table, id) {
+    const taskIndex = this.#database[table]?.findIndex(task => task.id === id)
+
+    if(taskIndex > -1) {
+      this.#database[table].splice(taskIndex, 1)
+    }
+  }
+
+  update(table, id, data) {
+    const taskIndex = this.#database[table]?.findIndex(task => task.id === id)
+
+    if(taskIndex > -1) {
+      this.#database[table][taskIndex] = {
+        ...this.#database[table][taskIndex],
+        ...data
+      }
+    }
+  }
 }
