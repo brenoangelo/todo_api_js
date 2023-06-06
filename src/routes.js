@@ -64,9 +64,13 @@ export const routes = [
         completed_at: isDone ? today : null,
       };
 
-      database.update('tasks', id, taskUpdated);
+      try {
+        database.update('tasks', id, taskUpdated);
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch {
+        return res.writeHead(404).end();
+      }
     },
   },
   {
@@ -81,9 +85,13 @@ export const routes = [
         completed_at: isDone ? today : null,
       };
 
-      database.update('tasks', id, taskCompleted);
+      try {
+        database.update('tasks', id, taskCompleted);
 
-      return res.writeHead(204).end();
+        return res.writeHead(204).end();
+      } catch {
+        return res.writeHead(404).end();
+      }
     },
   },
 ];
