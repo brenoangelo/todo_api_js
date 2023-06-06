@@ -19,6 +19,10 @@ export const routes = [
     method: 'POST',
     path: buildRoutePath('/tasks'),
     handler: (req, res) => {
+      if(!(req.body && req.body.title && req.body.description)) {
+        throw Error('title and description is null')
+      }
+
       const { title, description } = req.body;
 
       const newTask = {

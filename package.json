@@ -12,5 +12,9 @@
   },
   "keywords": [],
   "author": "Breno Angelo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "csv": "^6.3.1",
+    "csv-parse": "^5.4.0"
+  }
 }
