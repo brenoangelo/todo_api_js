@@ -1,8 +1,18 @@
 export class Database {
   #database = {};
 
-  select(table) {
-    return this.#database[table] ?? [];
+  select(table, search) {
+    let data = this.#database[table] ?? [];
+
+    if (search) {
+      data = data.filter((row) =>
+        Object.entries(search).some(([key, value]) =>
+          row[key].toLowerCase().includes(value.toLowerCase()),
+        ),
+      );
+    }
+
+    return data;
   }
 
   insert(table, data) {
